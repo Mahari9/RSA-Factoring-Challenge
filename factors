@@ -1,36 +1,33 @@
 #!/usr/bin/python3
-from sys import argv
-import math
-"""Factorize as many numbers as possible into a product of 2 smaller nums"""
+def check_factor(my_list):
+    """check factor of number in a list"""
+    import sys
 
+    if len(my_list) == 0 or my_list is None:
+        print("An error occured")
+    for q in my_list:
+       i = int(q)
+       for j in range(2, sys.maxsize):
+           if i % j == 0:
+               print("{:d}={:d}*{:d}".format(i, int(i/j), j))
+               break
 
-def factory(num):
-    """gets the factors of a number"""
-    if num % 2 == 0:
-        i = 2
-        print("{}={}*{}".format(num, int(num//i), i))
-    else:
-        sq = int(math.sqrt(num)) + 1
-        for i in range(3, sq, +2):
-            if num % i == 0:
-                print("{}={}*{}".format(num, int(num//i), i))
-                return
-            if num % (sq + i) == 0:
-                print("{}={}*{}".format(num, sq + i, int(num//(sq + i))))
-                return
-            if num % (sq - i) == 0:
-                print("{}={}*{}".format(num, sq - 1, int(num//(sq - i))))
-                return
+def factoring_challenge():
+    """factor two numbers"""
+    import sys
 
-
-def factors(filename):
-    """read_file and prints them out"""
-
-    with open(filename, encoding="utf-8") as my_file:
-        for i in my_file.readlines():
-            n = int(i)
-            result = factory(n)
-
-
-if __name__ == "__main__":
-    factors(argv[1])
+    lis = sys.argv
+    if len(lis) < 2:
+        print("Error!:<USAGE> ./factors filename")
+        exit(98)
+    f_name = ''
+    if len(lis) == 2:
+        f_name = lis[1]
+    if len(lis) == 3:
+        f_name = lis[2]
+    with open(f_name) as file_in:
+        lines = []
+        for line in file_in:
+            lines.append(line)
+    check_factor(lines)
+factoring_challenge()

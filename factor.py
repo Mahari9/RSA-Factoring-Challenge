@@ -11,7 +11,7 @@ def is_sqr(num):
 def is_rsa(n):
     """split the rsa of a number"""
     import math
-    from check import is_prime
+    from prime import is_prime
 
     a = int(math.sqrt(n)) + 1
     while True:
